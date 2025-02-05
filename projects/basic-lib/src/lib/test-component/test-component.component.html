@@ -1,0 +1,92 @@
+<input
+  name="type"
+  type="radio"
+  value="1"
+  [(ngModel)]="formtype"
+  (change)="onChange()"
+/>
+Add
+<input
+  name="type"
+  type="radio"
+  value="2"
+  [(ngModel)]="formtype"
+  (change)="onChange()"
+/>
+Display
+<input
+  name="type"
+  type="radio"
+  value="3"
+  [(ngModel)]="formtype"
+  (change)="onChange()"
+/>
+Preview 
+
+@if(formtype == 1){
+<div class="container">
+  <div class="example-container column">
+    <h2>Elements List</h2>
+
+    <div
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="elementList"
+      [cdkDropListConnectedTo]="[doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (item of elementList; track item) {
+      <div class="example-box" cdkDrag>
+        <lib-elements [item]="item"></lib-elements>
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="example-container column">
+    <h2>Form</h2>
+    <div
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="formList"
+      [cdkDropListConnectedTo]="[todoList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (item of formList; track item) {
+      <div class="example-box" cdkDrag>
+        <lib-elements [item]="item"></lib-elements>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+} @else if(formtype == 2){
+<div class="edit-container column">
+  <h2>Display Mode</h2>
+  <div>
+    @for (item of formList; track item) {
+    <div class="display-form">
+      <lib-elements
+        [item]="item"
+        [formType]="2"
+        (itemToDel)="drop($event)"
+      ></lib-elements>
+    </div>
+    }
+  </div>
+</div>
+
+} @else if(formtype == 3){
+<div class="edit-container column">
+  <h2>Preview</h2>
+  <div>
+    @for (item of formList; track item) {
+    <div class="preview-form">
+      <lib-elements [item]="item" [formType]="3"></lib-elements>
+    </div>
+    }
+  </div>
+</div>
+}
