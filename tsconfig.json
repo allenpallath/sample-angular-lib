@@ -8,6 +8,8 @@
         "./dist/basic-lib"
       ]
     },
+    "declaration": true,
+    "declarationMap": true,
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
