@@ -1,2 +1,26 @@
+<h1>Select Form Type</h1>
+<input
+  name="type"
+  type="radio"
+  value="1"
+  [(ngModel)]="formtype"
+/>
+Add
+<input
+  name="type"
+  type="radio"
+  value="2"
+  [(ngModel)]="formtype"
+
+/>
+Display
+<input
+  name="type"
+  type="radio"
+  value="3"
+  [(ngModel)]="formtype"
+/>
+Preview 
+
 <lib-basic-lib></lib-basic-lib>
-<lib-test-component></lib-test-component>
+<lib-test-component [formtype]="formtype" ></lib-test-component>

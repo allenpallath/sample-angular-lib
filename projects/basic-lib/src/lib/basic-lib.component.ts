@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <h1>Select Form Type</h1>
+
   `,
   styles: ``,
 })

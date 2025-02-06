@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   CdkDragDrop,
@@ -9,20 +9,30 @@ import {
   CdkDropList,
 } from '@angular/cdk/drag-drop';
 
-import { BasicLibComponent } from "../basic-lib.component";
-import { ElementsComponent } from "../elements/elements.component";
+import { BasicLibComponent } from '../basic-lib.component';
+import { ElementsComponent } from '../elements/elements.component';
 
 @Component({
   selector: 'lib-test-component',
-  imports: [CommonModule, FormsModule, CdkDropList, CdkDrag, BasicLibComponent, ElementsComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CdkDropList,
+    CdkDrag,
+    BasicLibComponent,
+    ElementsComponent,
+  ],
   templateUrl: './test-component.component.html',
   styleUrl: './test-component.component.css',
 })
-export class TestComponentComponent {
-  formtype: number = 0;
+export class TestComponentComponent implements OnChanges {
+  @Input() formtype: number = 0;
 
   constructor() {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
   onChange() {
     console.log(this.formtype);
   }
@@ -41,7 +51,9 @@ export class TestComponentComponent {
       event.container.data.splice(event.currentIndex, 0, movedItem);
     } else {
       // Clone item when dragged from `todoList` to `doneList`
-      const clonedItem = JSON.parse(JSON.stringify(event.previousContainer.data[event.previousIndex]));
+      const clonedItem = JSON.parse(
+        JSON.stringify(event.previousContainer.data[event.previousIndex])
+      );
       event.container.data.splice(event.currentIndex, 0, clonedItem);
     }
   }
